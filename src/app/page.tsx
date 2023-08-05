@@ -3,7 +3,7 @@
 import { Header } from "@/components/header";
 import { CardFront } from "@/components/cardFront";
 import { CardBack } from "@/components/cardBack";
-import react from "react";
+import react, { useEffect } from "react";
 
 export default function Home() {
   const [name, setName] = react.useState("");
@@ -11,11 +11,25 @@ export default function Home() {
   const [validate, setValidate] = react.useState("");
   const [cvv, setCvv] = react.useState("");
 
+  const [side, setSide] = react.useState(true);
+
+  useEffect(() => {
+    if (cvv) {
+      setSide(false);
+    }
+  }, [cvv]);
+
+  useEffect(() => {
+    if (name || number || validate) {
+      setSide(true);
+    }
+  }, [name, number, validate]);
+
   return (
-    <main className="h-screen w-screen bg-[#251F20] px-24 py-12">
+    <main className="h-screen w-screen bg-[#251F20] flex justify-center flex-col gap-12 px-40">
       <Header />
 
-      <div className="flex-row flex p-8 justify-between">
+      <div className="flex-row flex gap-12 p-8 justify-around">
         <form action="" className="flex flex-col gap-4">
           <div className="flex flex-col">
             <label className="text-xl font-semibold text-zinc-400" htmlFor="cardNumber">
@@ -83,7 +97,13 @@ export default function Home() {
           </div>
         </form>
 
-        <CardFront titName={name} cardNumber={number} validate={validate} />
+        {side == true ? <CardFront titName={name} cardNumber={number} validate={validate} /> : <CardBack cvv={cvv} />}
+      </div>
+
+      <div className="flex justify-center items-center">
+        <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50">
+          Cadastrar Cartão
+        </button>
       </div>
     </main>
   );
