@@ -1,7 +1,16 @@
+"use client";
+
 import { Header } from "@/components/header";
-import { Card } from "@/components/card";
+import { CardFront } from "@/components/cardFront";
+import { CardBack } from "@/components/cardBack";
+import react from "react";
 
 export default function Home() {
+  const [name, setName] = react.useState("");
+  const [number, setNumber] = react.useState("");
+  const [validate, setValidate] = react.useState("");
+  const [cvv, setCvv] = react.useState("");
+
   return (
     <main className="h-screen w-screen bg-[#251F20] px-24 py-12">
       <Header />
@@ -13,11 +22,15 @@ export default function Home() {
               Número do Cartão
             </label>
             <input
-              className="rounded-md bg-[#342f30] p-2"
+              className="rounded-md bg-[#342f30] text-zinc-400 p-2"
               placeholder="1234123412341234"
               type="text"
               name="cardNumber"
               id="cardNumber"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              pattern="[0-9]+"
+              maxLength={16}
             />
           </div>
 
@@ -31,6 +44,8 @@ export default function Home() {
               name="titName"
               id="titName"
               placeholder="Leonardo di Ser Piero da Vinci"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -42,9 +57,11 @@ export default function Home() {
               <input
                 className="rounded-md bg-[#342f30] text-zinc-400 p-2"
                 placeholder="01/42"
-                type="date"
+                type="month"
                 name="validate"
                 id="validate"
+                value={validate}
+                onChange={(e) => setValidate(e.target.value)}
               />
             </div>
 
@@ -58,12 +75,15 @@ export default function Home() {
                 type="text"
                 name="cvv"
                 id="cvv"
+                value={cvv}
+                onChange={(e) => setCvv(e.target.value)}
+                maxLength={3}
               />
             </div>
           </div>
         </form>
 
-        <Card />
+        <CardFront titName={name} cardNumber={number} validate={validate} />
       </div>
     </main>
   );
