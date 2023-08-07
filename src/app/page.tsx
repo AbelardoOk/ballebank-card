@@ -26,10 +26,10 @@ export default function Home() {
   }, [name, number, validate]);
 
   return (
-    <main className="h-screen w-screen bg-[#251F20] flex justify-center flex-col gap-12 px-40">
+    <main className="h-screen w-screen overflow-hidden bg-[#251F20] flex justify-center flex-col gap-12 px-6 lg:px-40">
       <Header />
 
-      <div className="flex-row flex gap-12 p-8 justify-around">
+      <div className="flex-col-reverse lg:flex-row flex gap-12 lg:p-8 justify-around">
         <form action="" className="flex flex-col gap-4">
           <div className="flex flex-col">
             <label className="text-xl font-semibold text-zinc-400" htmlFor="cardNumber">
@@ -79,7 +79,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col overflow-hidden">
               <label className="text-xl font-semibold text-zinc-400" htmlFor="cvv">
                 CVV
               </label>
@@ -97,11 +97,13 @@ export default function Home() {
           </div>
         </form>
 
-        {side == true ? <CardFront titName={name} cardNumber={number} validate={validate} /> : <CardBack cvv={cvv} />}
+        <div className="flex justify-center items-center">
+          {side == true ? <CardFront titName={name} cardNumber={number} validate={validate} /> : <CardBack cvv={cvv} />}
+        </div>
       </div>
 
       <div className="flex justify-center items-center">
-        <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50">
+        <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50 focus:shadow-inner transition duration-150 focus:bg-[#bb6e5c]">
           Cadastrar Cartão
         </button>
       </div>

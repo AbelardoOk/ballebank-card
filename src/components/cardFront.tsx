@@ -36,7 +36,7 @@ export function CardFront({
   }, [cardNumber]);
 
   return (
-    <div className="flex justify-between flex-col w-[500px] h-[280px] p-6 bg-gradient-to-r from-[#E68E7B] to-[#D47A66] gap-8 rounded-lg">
+    <div className="flex justify-between flex-col w-[384px] h-[215px] lg:w-[500px] lg:h-[280px] p-6 bg-gradient-to-r from-[#E68E7B] to-[#D47A66] gap-8 rounded-lg">
       <div className="flex justify-end">
         <Image src="/logo.png" alt="" width={192} height={37.65} />
       </div>
