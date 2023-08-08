@@ -12,7 +12,22 @@ export default function Home() {
   const [validate, setValidate] = react.useState("");
   const [cvv, setCvv] = react.useState("");
 
-  const [side, setSide] = react.useState(true);
+  const [side, setSide] = react.useState(true) || "";
+  const cardId: number = localStorage.getItem("cardId") || ;
+
+  function saveCardToLocalStorage(cardId: number, name: string, number: string, validate: string, cvv: string) {
+    let cardInfos: any = {
+      id: cardId,
+      name: name,
+      number: number,
+      validate: validate,
+      cvv: cvv,
+    };
+
+    localStorage.setItem(`card${cardId}`, cardInfos);
+    cardId++;
+    localStorage.setItem("cardId", JSON.stringify(state.cardId));
+  }
 
   useEffect(() => {
     if (cvv) {
@@ -112,7 +127,10 @@ export default function Home() {
       <div className="transition duration-1000">
         {name != "" && number != "" && validate != "" && cvv != "" ? (
           <Link href={"/allcards"} className="flex justify-center items-center">
-            <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50 focus:shadow-inner transition duration-150 focus:bg-[#bb6e5c]">
+            <button
+              onClick={saveCardToLocalStorage}
+              className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50 focus:shadow-inner transition duration-150 focus:bg-[#bb6e5c]"
+            >
               Cadastrar Cartão
             </button>
           </Link>
