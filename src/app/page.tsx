@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { CardFront } from "@/components/cardFront";
 import { CardBack } from "@/components/cardBack";
 import react, { useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [name, setName] = react.useState("");
@@ -98,14 +99,30 @@ export default function Home() {
         </form>
 
         <div className="flex justify-center items-center">
-          {side == true ? <CardFront titName={name} cardNumber={number} validate={validate} /> : <CardBack cvv={cvv} />}
+          <div className="relative w-full h-full duration-1000">
+            {side == true ? (
+              <CardFront titName={name} cardNumber={number} validate={validate} />
+            ) : (
+              <CardBack cvv={cvv} />
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="flex justify-center items-center">
-        <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50 focus:shadow-inner transition duration-150 focus:bg-[#bb6e5c]">
-          Cadastrar Cartão
-        </button>
+      <div className="transition duration-1000">
+        {name != "" && number != "" && validate != "" && cvv != "" ? (
+          <Link href={"/allcards"} className="flex justify-center items-center">
+            <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50 focus:shadow-inner transition duration-150 focus:bg-[#bb6e5c]">
+              Cadastrar Cartão
+            </button>
+          </Link>
+        ) : (
+          <div className="flex justify-center items-center">
+            <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e6bcb3] text-zinc-700 shadow-inner">
+              Cadastrar Cartão
+            </button>
+          </div>
+        )}
       </div>
     </main>
   );

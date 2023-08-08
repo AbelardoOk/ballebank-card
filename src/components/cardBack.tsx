@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import react, { useEffect } from "react";
 
@@ -16,7 +18,7 @@ export function CardBack({ cvv }: { cvv: string }) {
 
       <div className="text-white text-end flex flex-col justify-center items-end">
         <p className="font-normal text-base">cvv</p>
-        <p className="font-bold text-base">{cvv}</p>
+        <p className="font-bold text-base">{cv}</p>
       </div>
 
       <div className="justify-end items-end flex">
