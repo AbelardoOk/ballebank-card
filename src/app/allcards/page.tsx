@@ -1,9 +1,28 @@
+"use client";
+
 import { CardBack } from "@/components/cardBack";
 import { CardFront } from "@/components/cardFront";
 import { Header } from "@/components/header";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
+  const valorId = localStorage.getItem("cardId") || 1;
+  const totalId: number = parseInt(valorId);
+  const [cards, setCards] = useState<any[]>([]);
+
+  useEffect(() => {
+    for (let i = 1; i <= totalId; i++) {
+      const cards: any = localStorage.getItem(`card${i}`);
+      const savedCards = JSON.parse(cards);
+      if (savedCards) {
+        setCards(savedCards);
+      }
+
+      console.log(cards);
+    }
+  }, []);
+
   return (
     <main className="flex justify-center bg-[#251F20] gap-12 flex-col py-12 px-40">
       <Header />
@@ -15,14 +34,8 @@ export default function Home() {
       </Link>
 
       <section className="px-12 grid grid-cols-2 gap-12">
-        <CardFront />
-        <CardBack />
-
-        <CardFront />
-        <CardBack />
-
-        <CardFront />
-        <CardBack />
+        {Array.isArray(cards) &&
+          cards.map((cards) => <CardFront titName={cards.name} cardNumber={cards.number} validate={cards.validate} />)}
       </section>
     </main>
   );
