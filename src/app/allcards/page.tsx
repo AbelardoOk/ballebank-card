@@ -8,16 +8,14 @@ import Link from "next/link";
 
 export default function Home() {
   const valorId = localStorage.getItem("cardId") || 1;
-  const totalId: number = parseInt(valorId);
-  const [cards, setCards] = useState<any[]>([]);
+  const totalId: number = parseInt(valorId) - 1;
+  const cards = new Array(totalId);
 
   useEffect(() => {
     for (let i = 1; i <= totalId; i++) {
-      const cards: any = localStorage.getItem(`card${i}`);
-      const savedCards = JSON.parse(cards);
-      if (savedCards) {
-        setCards(savedCards);
-      }
+      const cardsAux: any = localStorage.getItem(`card${i}`);
+      const savedCards = JSON.parse(cardsAux);
+      cards[i] = savedCards;
 
       console.log(cards);
     }
@@ -34,8 +32,9 @@ export default function Home() {
       </Link>
 
       <section className="px-12 grid grid-cols-2 gap-12">
-        {Array.isArray(cards) &&
-          cards.map((cards) => <CardFront titName={cards.name} cardNumber={cards.number} validate={cards.validate} />)}
+        {cards.map((cards) => (
+          <CardFront titName={cards.name} cardNumber={cards.number} validate={cards.validate} />
+        ))}
       </section>
     </main>
   );
