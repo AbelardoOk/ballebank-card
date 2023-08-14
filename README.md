@@ -9,8 +9,6 @@ A ideia principal do site é estudar tecnologias frontEnd e BackEnd, além de qu
 
 No site, você pode cadastrar seus cartões, que ficarão salvos no localStorage do navegador e serão renderizados em uma página específica
 
-> **NOTA:**  Caso queira ver o site no ar, [clique neste link](https://ballebank.netlify.app/).
-
 ## Instalação
 
 Para instalar as dependencias necessárias, abra o terminal e digite:
