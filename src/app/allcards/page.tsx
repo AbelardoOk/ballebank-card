@@ -19,7 +19,7 @@ export default function Home() {
   }
 
   return (
-    <main className="animate-fade-up flex h-max flex-col gap-12 bg-[#251F20] px-40 py-12">
+    <main className="flex h-max animate-fade-up flex-col gap-12 bg-[#251F20] px-6 py-4 lg:px-40 lg:py-12">
       <Header />
 
       <Link href={"/"} className="flex justify-around">
@@ -28,15 +28,16 @@ export default function Home() {
         </button>
       </Link>
 
-      <section className="flex flex-col justify-around gap-12 px-12">
+      <section className="flex flex-col items-center justify-center gap-12 lg:px-12">
         {cards.map((cards) => (
-          <div className="flex gap-4">
+          <div className="flex flex-col gap-4 lg:flex-row">
             <CardFront
+              key={cards.id}
               titName={cards.name}
               cardNumber={cards.number}
               validate={cards.validate}
             />
-            <CardBack cvv={cards.cvv} />
+            <CardBack cvv={cards.cvv} key={cards.id} />
           </div>
         ))}
       </section>
