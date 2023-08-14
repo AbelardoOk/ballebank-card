@@ -13,8 +13,7 @@ export default function Home() {
   const [cvv, setCvv] = react.useState("");
 
   const [side, setSide] = react.useState(true) || "";
-  const valorId = localStorage.getItem("cardId") || 1;
-  const cardId = parseInt(valorId);
+  const cardId = parseInt(localStorage.getItem("cardId") || "1");
 
   function saveCardToLocalStorage(
     cardId: number,
