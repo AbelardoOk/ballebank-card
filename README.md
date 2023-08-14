@@ -1,4 +1,4 @@
-íifica# BalleBank
+# BalleBank
 um sistema para guardar seus cartões!
 
 ![](https://media.discordapp.net/attachments/774432392818589746/1137466359165489304/Captura_de_tela_2023-08-05_-_14.19.01.png?width=867&height=494)
