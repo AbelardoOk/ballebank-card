@@ -19,7 +19,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex h-max flex-col gap-12 bg-[#251F20] px-40 py-12">
+    <main className="animate-fade-up flex h-max flex-col gap-12 bg-[#251F20] px-40 py-12">
       <Header />
 
       <Link href={"/"} className="flex justify-around">

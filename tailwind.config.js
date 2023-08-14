@@ -1,13 +1,3 @@
-const plugin = require("tailwindcss/plugin");
-
-const MyClass = plugin(function ({ addUtilities }) {
-  addUtilities({
-    ".my-rotate-y-180": {
-      transform: "rotateY(180deg)",
-    },
-  });
-});
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -19,9 +9,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
-  plugins: [MyClass],
+  plugins: [require("tailwindcss-animated")],
 };
