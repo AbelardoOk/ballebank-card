@@ -7,14 +7,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
-  const valorId = localStorage.getItem("cardId") || 1;
-  const totalId: number = parseInt(valorId) - 1;
+  const totalId = parseInt(localStorage.getItem("cardId") || "error: id not found") - 1;
   const cards = new Array(totalId);
 
   useEffect(() => {
+    const cards = new Array(totalId);
     for (let i = 1, i2 = 0; i <= totalId; i++, i2++) {
-      const cardsAux: any = localStorage.getItem(`card${i}`);
-      const savedCards = JSON.parse(cardsAux);
+      const savedCards: string = JSON.parse(localStorage.getItem(`card${i}`) || "error: card not found");
       cards[i2] = savedCards;
     }
 
@@ -33,7 +32,7 @@ export default function Home() {
 
       <section className="px-12 grid grid-cols-2 gap-12">
         {cards.map((cards) => (
-          <CardFront titName={cards.name} cardNumber={cards.number} validate={cards.validate} />
+          <CardFront key={cards.id} titName={cards.name} cardNumber={cards.number} validate={cards.validate} />
         ))}
       </section>
     </main>
