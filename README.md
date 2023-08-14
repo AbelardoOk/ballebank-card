@@ -1,4 +1,4 @@
-# BalleBank
+íifica# BalleBank
 um sistema para guardar seus cartões!
 
 ![](https://media.discordapp.net/attachments/774432392818589746/1137466359165489304/Captura_de_tela_2023-08-05_-_14.19.01.png?width=867&height=494)
@@ -7,10 +7,9 @@ um sistema para guardar seus cartões!
 ## Sobre o projeto
 A ideia principal do site é estudar tecnologias frontEnd e BackEnd, além de que forma fazer ambas se comunicarem. A ideia veio através de um desafio proposto na comunidade Ballerini no discord.
 
-> **NOTA:**  Caso queira ver o site no ar, [clique neste link](https://ballebank.netlify.app/).
+No site, você pode cadastrar seus cartões, que ficarão salvos no localStorage do navegador e serão renderizados em uma página específica
 
-## Planos
-Atualmente,o projeto está com o FrontEnd praticamente pronto, agora, quero criar um banco de dados ou apenas utilizar o localStorage para o armazenamento dos dados e depois exibir os dados salvos na página com uma lista de cartões...
+> **NOTA:**  Caso queira ver o site no ar, [clique neste link](https://ballebank.netlify.app/).
 
 ## Instalação
 
