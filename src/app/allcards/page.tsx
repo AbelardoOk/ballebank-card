@@ -12,13 +12,13 @@ export default function Home() {
   const cards = new Array(totalId);
 
   useEffect(() => {
-    for (let i = 1; i <= totalId; i++) {
+    for (let i = 1, i2 = 0; i <= totalId; i++, i2++) {
       const cardsAux: any = localStorage.getItem(`card${i}`);
       const savedCards = JSON.parse(cardsAux);
-      cards[i] = savedCards;
-
-      console.log(cards);
+      cards[i2] = savedCards;
     }
+
+    console.log(cards);
   }, []);
 
   return (
