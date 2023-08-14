@@ -12,32 +12,54 @@ export default function Home() {
   const [validate, setValidate] = react.useState("");
   const [cvv, setCvv] = react.useState("");
 
-  const [side, setSide] = react.useState(true);
+  const [side, setSide] = react.useState(true) || "";
+  const cardId = parseInt(localStorage.getItem("cardId") || "1");
 
-  useEffect(() => {
-    if (cvv) {
-      setSide(false);
-    }
-  }, [cvv]);
+  function saveCardToLocalStorage(
+    cardId: number,
+    name: string,
+    number: string,
+    validate: string,
+    cvv: string,
+  ) {
+    let cardInfos: any = {
+      id: cardId,
+      name: name,
+      number: number,
+      validate: validate,
+      cvv: cvv,
+    };
+
+    console.table(cardInfos);
+
+    localStorage.setItem(`card${cardId}`, JSON.stringify(cardInfos));
+    cardId++;
+    localStorage.setItem("cardId", JSON.stringify(cardId));
+  }
 
   useEffect(() => {
     if (name || number || validate) {
       setSide(true);
+    } else if (cvv) {
+      setSide(false);
     }
-  }, [name, number, validate]);
+  }, [name, number, validate, cvv]);
 
   return (
-    <main className="h-screen w-screen overflow-hidden bg-[#251F20] flex justify-center flex-col gap-12 px-6 lg:px-40">
+    <main className="flex h-screen w-screen flex-col justify-center gap-12 overflow-hidden bg-[#251F20] px-6 lg:px-40">
       <Header />
 
-      <div className="flex-col-reverse lg:flex-row flex gap-12 lg:p-8 justify-around">
+      <div className="flex flex-col-reverse justify-around gap-12 lg:flex-row lg:p-8">
         <form action="" className="flex flex-col gap-4">
           <div className="flex flex-col">
-            <label className="text-xl font-semibold text-zinc-400" htmlFor="cardNumber">
+            <label
+              className="text-xl font-semibold text-zinc-400"
+              htmlFor="cardNumber"
+            >
               Número do Cartão
             </label>
             <input
-              className="rounded-md bg-[#342f30] text-zinc-400 p-2"
+              className="rounded-md bg-[#342f30] p-2 text-zinc-400"
               placeholder="1234123412341234"
               type="text"
               name="cardNumber"
@@ -50,11 +72,14 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col">
-            <label className="text-xl font-semibold text-zinc-400" htmlFor="titName">
+            <label
+              className="text-xl font-semibold text-zinc-400"
+              htmlFor="titName"
+            >
               Nome do Titular
             </label>
             <input
-              className="rounded-md bg-[#342f30] text-zinc-400 p-2"
+              className="rounded-md bg-[#342f30] p-2 text-zinc-400"
               type="text"
               name="titName"
               id="titName"
@@ -66,11 +91,14 @@ export default function Home() {
 
           <div className="flex flex-row gap-6">
             <div className="flex flex-col">
-              <label className="text-xl font-semibold text-zinc-400" htmlFor="validate">
+              <label
+                className="text-xl font-semibold text-zinc-400"
+                htmlFor="validate"
+              >
                 Validade
               </label>
               <input
-                className="rounded-md bg-[#342f30] text-zinc-400 p-2"
+                className="rounded-md bg-[#342f30] p-2 text-zinc-400"
                 placeholder="01/42"
                 type="month"
                 name="validate"
@@ -81,11 +109,14 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col overflow-hidden">
-              <label className="text-xl font-semibold text-zinc-400" htmlFor="cvv">
+              <label
+                className="text-xl font-semibold text-zinc-400"
+                htmlFor="cvv"
+              >
                 CVV
               </label>
               <input
-                className="rounded-md bg-[#342f30] text-zinc-400 p-2"
+                className="rounded-md bg-[#342f30] p-2 text-zinc-400"
                 placeholder="123"
                 type="text"
                 name="cvv"
@@ -98,10 +129,14 @@ export default function Home() {
           </div>
         </form>
 
-        <div className="flex justify-center items-center">
-          <div className="relative w-full h-full duration-1000">
+        <div className="flex items-center justify-center">
+          <div className="relative h-full w-full duration-1000">
             {side == true ? (
-              <CardFront titName={name} cardNumber={number} validate={validate} />
+              <CardFront
+                titName={name}
+                cardNumber={number}
+                validate={validate}
+              />
             ) : (
               <CardBack cvv={cvv} />
             )}
@@ -111,14 +146,19 @@ export default function Home() {
 
       <div className="transition duration-1000">
         {name != "" && number != "" && validate != "" && cvv != "" ? (
-          <Link href={"/allcards"} className="flex justify-center items-center">
-            <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e68e7b] text-zinc-50 focus:shadow-inner transition duration-150 focus:bg-[#bb6e5c]">
+          <Link href={"/allcards"} className="flex items-center justify-center">
+            <button
+              onClick={() =>
+                saveCardToLocalStorage(cardId, name, number, validate, cvv)
+              }
+              className="rounded-md bg-[#e68e7b] px-12 py-3 text-sm font-semibold text-zinc-50 transition duration-150 focus:bg-[#bb6e5c] focus:shadow-inner"
+            >
               Cadastrar Cartão
             </button>
           </Link>
         ) : (
-          <div className="flex justify-center items-center">
-            <button className="rounded-md px-12 py-3 font-semibold text-sm bg-[#e6bcb3] text-zinc-700 shadow-inner">
+          <div className="flex items-center justify-center">
+            <button className="rounded-md bg-[#e6bcb3] px-12 py-3 text-sm font-semibold text-zinc-700 shadow-inner">
               Cadastrar Cartão
             </button>
           </div>
