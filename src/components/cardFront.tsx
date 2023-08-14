@@ -36,16 +36,16 @@ export function CardFront({
   }, [cardNumber]);
 
   return (
-    <div className="flex justify-between flex-col w-[384px] h-[215px] lg:w-[500px] lg:h-[280px] p-6 bg-gradient-to-r from-[#E68E7B] to-[#D47A66] gap-8 rounded-lg">
+    <div className="animate-flip-up flex h-[215px] w-[384px] flex-col justify-between gap-8 rounded-lg bg-gradient-to-r from-[#E68E7B] to-[#D47A66] p-6 lg:h-[280px] lg:w-[500px]">
       <div className="flex justify-end">
         <Image src="/logo.png" alt="" width={192} height={37.65} />
       </div>
 
-      <div className="text-white text-left flex flex-col">
-        <p className="font-bold text-2xl">{number}</p>
-        <p className="font-medium text-base">{name}</p>
-        <p className="font-normal text-xs">Valido até</p>
-        <p className="font-bold text-xs">{val}</p>
+      <div className="flex flex-col text-left text-white">
+        <p className="text-2xl font-bold">{number}</p>
+        <p className="text-base font-medium">{name}</p>
+        <p className="text-xs font-normal">Valido até</p>
+        <p className="text-xs font-bold">{val}</p>
       </div>
     </div>
   );

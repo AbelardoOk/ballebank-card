@@ -13,15 +13,15 @@ export function CardBack({ cvv }: { cvv: string }) {
   }, [cvv]);
 
   return (
-    <div className="flex flex-col w-[384px] h-[215px] lg:w-[500px] lg:h-[280px] p-6 bg-gradient-to-r from-[#E68E7B] to-[#D47A66] gap-8 rounded-lg">
-      <div className="px-6 pt-6 w-[344] h-[30] lg:w-[448px] lg:h-[40px] bg-[#A45A49]"></div>
+    <div className="animate-flip-down flex h-[215px] w-[384px] flex-col gap-8 rounded-lg bg-gradient-to-r from-[#E68E7B] to-[#D47A66] p-6 lg:h-[280px] lg:w-[500px]">
+      <div className="h-[30] w-[344] bg-[#A45A49] px-6 pt-6 lg:h-[40px] lg:w-[448px]"></div>
 
-      <div className="text-white text-end flex flex-col justify-center items-end">
-        <p className="font-normal text-base">cvv</p>
-        <p className="font-bold text-base">{cv}</p>
+      <div className="flex flex-col items-end justify-center text-end text-white">
+        <p className="text-base font-normal">cvv</p>
+        <p className="text-base font-bold">{cv}</p>
       </div>
 
-      <div className="justify-end items-end flex">
+      <div className="flex items-end justify-end">
         <Image src="/iconDiscord.png" alt="" width={36} height={36} />
       </div>
     </div>

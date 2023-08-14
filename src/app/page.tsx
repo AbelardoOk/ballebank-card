@@ -40,13 +40,17 @@ export default function Home() {
   useEffect(() => {
     if (name || number || validate) {
       setSide(true);
-    } else if (cvv) {
-      setSide(false);
     }
   }, [name, number, validate, cvv]);
 
+  useEffect(() => {
+    if (cvv) {
+      setSide(false);
+    }
+  }, [cvv]);
+
   return (
-    <main className="flex h-screen w-screen flex-col justify-center gap-12 overflow-hidden bg-[#251F20] px-6 lg:px-40">
+    <main className="animate-fade-up flex h-screen w-screen flex-col justify-center gap-12 overflow-hidden bg-[#251F20] px-6 lg:px-40">
       <Header />
 
       <div className="flex flex-col-reverse justify-around gap-12 lg:flex-row lg:p-8">
@@ -130,7 +134,7 @@ export default function Home() {
         </form>
 
         <div className="flex items-center justify-center">
-          <div className="relative h-full w-full duration-1000">
+          <div className="h-full w-full transition duration-1000">
             {side == true ? (
               <CardFront
                 titName={name}
